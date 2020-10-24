@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/slate/bootstrap.min.css"
+    />
+    <title>Inicio</title>
+  </head>
+  <body>
+    <div class="container p-2">
+      <h1>Esta es la pagina de inicio</h1>
+      <br />
+      <div th:if="${personas != null and !personas.empty}">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Telefono</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each=" persona : ${personas}">
+              <td th:text="${persona.nombre}"></td>
+              <td th:text="${persona.apellido}"></td>
+              <td th:text="${persona.telefono}"></td>
+              <td th:text="${persona.email}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div th:if="${personas == null or personas.empty}">
+        <h1 class="text-center text-bold">No hay personas registradas</h1>
+      </div>
+    </div>
+  </body>
+</html>
