@@ -11,7 +11,10 @@
   </head>
   <body>
     <div class="container p-2">
-      <h1>Esta es la pagina de inicio</h1>
+      <h1 class="text-center">Lista de Personas</h1>
+      <a class="btn btn-primary my-2" th:href="@{/add}" role="button"
+        >Nuevo Registro</a
+      >
       <br />
       <div th:if="${personas != null and !personas.empty}">
         <table class="table table-bordered">
@@ -21,6 +24,7 @@
               <th>Apellido</th>
               <th>Telefono</th>
               <th>Email</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -29,6 +33,10 @@
               <td th:text="${persona.apellido}"></td>
               <td th:text="${persona.telefono}"></td>
               <td th:text="${persona.email}"></td>
+              <td class="text-center">
+                <a class="btn btn-secondary" th:href="@{/edit/} + ${persona.idPersona}" role="button">Editar</a>
+                <a class="btn btn-danger" th:href="@{/delete/} + ${persona.idPersona}" role="button">Borrar</a>
+              </td>
             </tr>
           </tbody>
         </table>
