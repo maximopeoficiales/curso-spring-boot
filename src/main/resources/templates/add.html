@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/slate/bootstrap.min.css"
+    />
+    <title>Agregar Persona</title>
+  </head>
+  <body>
+    <div class="container p-2">
+      <header th:replace="layouts/plantilla :: header"></header>
+      <h5 class="text-center">Agregar Persona</h5>
+      <a class="btn btn-primary my-2" th:href="@{/}" role="button">Regresar</a>
+      <form th:action="@{/save}" method="post" th:object="${persona}">
+        <!-- cuando tenga un valor actualizara la informacion -->
+        <input type="hidden" th:field="*{idPersona}" />
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            name="nombre"
+            th:field="*{nombre}"
+            class="form-control"
+          />
+          <span
+            th:if="${#fields.hasErrors('nombre')}"
+            th:errors="*{nombre}"
+          ></span>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input
+            type="text"
+            name="apellido"
+            th:field="*{apellido}"
+            class="form-control"
+          />
+          <span
+            th:if="${#fields.hasErrors('apellido')}"
+            th:errors="*{apellido}"
+          ></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            th:field="*{email}"
+            class="form-control"
+          />
+          <span
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+          ></span>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Telefono</label>
+          <input
+            type="text"
+            name="telefono"
+            th:field="*{telefono}"
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Guardar</button>
+      </form>
+      <footer th:replace="layouts/plantilla :: footer"></footer>
+    </div>
+  </body>
+</html>
