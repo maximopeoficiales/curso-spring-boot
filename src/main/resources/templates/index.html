@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html
+  lang="es"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +17,11 @@
     <div class="container p-2">
       <header th:replace="layouts/plantilla :: header"></header>
       <h5 class="text-center">[[#{index.titulo}]]</h5>
-      <a class="btn btn-primary my-2" th:href="@{/add}" role="button"
+      <a
+        class="btn btn-primary my-2"
+        th:href="@{/add}"
+        role="button"
+        sec:authorize="hasRole('ROLE_ADMIN')"
         >[[#{persona.crear}]]</a
       >
       <br />
@@ -25,7 +33,9 @@
               <th>[[#{persona.apellido}]]</th>
               <th>[[#{persona.telefono}]]</th>
               <th>[[#{persona.email}]]</th>
-              <th>[[#{accion.nombre}]]</th>
+              <th sec:authorize="hasRole('ROLE_ADMIN')">
+                [[#{accion.nombre}]]
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -34,14 +44,16 @@
               <td th:text="${persona.apellido}"></td>
               <td th:text="${persona.telefono}"></td>
               <td th:text="${persona.email}"></td>
-              <td class="text-center">
+              <td class="text-center" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a
+                  sec:authorize="hasRole('ROLE_ADMIN')"
                   class="btn btn-secondary"
                   th:href="@{/edit/} + ${persona.idPersona}"
                   role="button"
                   >[[#{accion.editar}]]</a
                 >
                 <a
+                  sec:authorize="hasRole('ROLE_ADMIN')"
                   class="btn btn-danger"
                   th:href="@{/delete/} + ${persona.idPersona}"
                   role="button"
