@@ -7,25 +7,25 @@
       rel="stylesheet"
       href="https://bootswatch.com/4/slate/bootstrap.min.css"
     />
-    <title>Inicio</title>
+    <title>[[#{index.titulo}]]</title>
   </head>
   <body>
     <div class="container p-2">
       <header th:replace="layouts/plantilla :: header"></header>
-      <h5 class="text-center">Lista de Personas</h5>
+      <h5 class="text-center">[[#{index.titulo}]]</h5>
       <a class="btn btn-primary my-2" th:href="@{/add}" role="button"
-        >Nuevo Registro</a
+        >[[#{persona.crear}]]</a
       >
       <br />
       <div th:if="${personas != null and !personas.empty}">
         <table class="table table-bordered">
           <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Telefono</th>
-              <th>Email</th>
-              <th>Actions</th>
+            <tr class="text-center">
+              <th>[[#{persona.nombre}]]</th>
+              <th>[[#{persona.apellido}]]</th>
+              <th>[[#{persona.telefono}]]</th>
+              <th>[[#{persona.email}]]</th>
+              <th>[[#{accion.nombre}]]</th>
             </tr>
           </thead>
           <tbody>
@@ -39,13 +39,13 @@
                   class="btn btn-secondary"
                   th:href="@{/edit/} + ${persona.idPersona}"
                   role="button"
-                  >Editar</a
+                  >[[#{accion.editar}]]</a
                 >
                 <a
                   class="btn btn-danger"
                   th:href="@{/delete/} + ${persona.idPersona}"
                   role="button"
-                  >Borrar</a
+                  >[[#{accion.eliminar}]]</a
                 >
               </td>
             </tr>
@@ -54,7 +54,7 @@
       </div>
 
       <div th:if="${personas == null or personas.empty}">
-        <h1 class="text-center text-bold">No hay personas registradas</h1>
+        <h1 class="text-center text-bold">[[#{persona.vacio}]]</h1>
       </div>
       <footer th:replace="layouts/plantilla :: footer"></footer>
     </div>
